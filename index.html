@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Effets de fondu ou de diapositive d'images avec jQuery</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="exo2-1.css">
+</head>
+<body>
+	<img id="image1" src="images/momoshiki4.png" style="display:none;">
+	<img id="image2" src="images/borushiki2.jpeg" style="display:none;">
+	<img id="image3" src="images/borushiki3.jpg" style="display:none;">
+    
+    <button id="prev">Précédent</button>
+    <button id="next">Suivant</button>
 
+    <script>
+        $(document).ready(function() {
+            var currentImage = 1;
+            var numImages = $('img').length;
+
+            function fadeNext() {
+                $('#image' + currentImage).fadeOut(1000, function() {
+                    currentImage = (currentImage % numImages) + 1;
+                    $('#image' + currentImage).fadeIn(1000);
+                });
+            }
+
+            function fadePrev() {
+                $('#image' + currentImage).fadeOut(1000, function() {
+                    currentImage = ((currentImage - 2 + numImages) % numImages) + 1;
+                    $('#image' + currentImage).fadeIn(1000);
+                });
+            }
+
+            $('#next').click(fadeNext);
+            $('#prev').click(fadePrev);
+
+            $('#image1').fadeIn(1000);
+        });
+    </script>
+</body>
+</html>
